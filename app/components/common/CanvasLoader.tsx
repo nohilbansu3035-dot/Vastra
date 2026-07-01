@@ -18,7 +18,7 @@ const CanvasLoader = (props: { children: React.ReactNode, pages?: number }) => {
   const ref= useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const backgroundColor = useThemeStore((state) => state.theme.color);
-  const { progress } = useProgress();
+  const { active, progress } = useProgress();
   const [isLoaded, setIsLoaded] = useState(false);
   const [canvasStyle, setCanvasStyle] = useState<React.CSSProperties>({
     position: "absolute",
@@ -31,10 +31,21 @@ const CanvasLoader = (props: { children: React.ReactNode, pages?: number }) => {
   });
 
   useEffect(() => {
+    let timeoutId: NodeJS.Timeout;
+
     if (progress === 100) {
       setIsLoaded(true);
+    } else if (!active && progress === 0) {
+      // If nothing is actively loading, wait 500ms and resolve loading screen
+      timeoutId = setTimeout(() => {
+        setIsLoaded(true);
+      }, 500);
     }
-  }, [progress]);
+
+    return () => {
+      if (timeoutId) clearTimeout(timeoutId);
+    };
+  }, [progress, active]);
 
   useEffect(() => {
     if (!isMobile) {
@@ -77,23 +88,21 @@ const CanvasLoader = (props: { children: React.ReactNode, pages?: number }) => {
   return (
     <div className="h-[100dvh] wrapper relative">
       <div className="h-[100dvh] relative" ref={ref}>
-        {isLoaded && (
-          <Canvas className="base-canvas"
-            shadows
-            style={canvasStyle}
-            ref={canvasRef}
-            dpr={[1, 1.5]}>
-            {/* <Perf/> */}
-            <Suspense fallback={null}>
-              <ambientLight intensity={0.5} />
+        <Canvas className="base-canvas"
+          shadows
+          style={canvasStyle}
+          ref={canvasRef}
+          dpr={[1, 1.5]}>
+          {/* <Perf/> */}
+          <Suspense fallback={null}>
+            <ambientLight intensity={0.5} />
 
-              <ScrollControls pages={props.pages || 4} damping={0.4} maxSpeed={1} distance={1} style={{ zIndex: 1 }}>
-                {props.children}
-              </ScrollControls>
-            </Suspense>
-            <AdaptiveDpr pixelated/>
-          </Canvas>
-        )}
+            <ScrollControls pages={props.pages || 4} damping={0.4} maxSpeed={1} distance={1} style={{ zIndex: 1 }}>
+              {props.children}
+            </ScrollControls>
+          </Suspense>
+          <AdaptiveDpr pixelated/>
+        </Canvas>
         <ProgressLoader progress={progress} />
       </div>
       <ThemeSwitcher />

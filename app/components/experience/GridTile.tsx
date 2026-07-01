@@ -55,7 +55,12 @@ const GridTile = (props: GridTileProps) => {
       
       const div = document.createElement('div');
       div.className = 'fixed close';
-      div.onclick = () => exitPortal(true);
+      div.onclick = (e) => {
+        e.stopPropagation();
+        exitPortal(true);
+      };
+      div.onpointerdown = (e) => e.stopPropagation();
+      div.onmousedown = (e) => e.stopPropagation();
 
       if (!document.querySelector('.close')) {
         document.body.appendChild(div);
@@ -95,7 +100,12 @@ const GridTile = (props: GridTileProps) => {
     const div = document.createElement('div');
 
     div.className = 'fixed close';
-    div.onclick = () => exitPortal(true);
+    div.onclick = (e) => {
+      e.stopPropagation();
+      exitPortal(true);
+    };
+    div.onpointerdown = (e) => e.stopPropagation();
+    div.onmousedown = (e) => e.stopPropagation();
 
     if (!document.querySelector('.close')) {
       document.body.appendChild(div);

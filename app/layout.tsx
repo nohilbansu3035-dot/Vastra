@@ -14,9 +14,13 @@ const vercettiFont = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Sagar Bansu ✌️",
-  description: "A frontend developer by profession, a creative at heart.",
-  keywords: "Sagar Bansu, Frontend Engineer, React Developer, Three.js, Creative Developer, Web Development, Angular, JavaScript, TypeScript, Portfolio",
+  metadataBase: new URL("https://vastrainstitute.website"),
+  alternates: {
+    canonical: "/",
+  },
+  title: "Vastra Institute | Textile & Apparel Design Academy",
+  description: "Vastra Institute is a premier textile and apparel design academy founded by Sagar Bansu (5+ years industry experience), offering professional saree design, repeat pattern development, and fabric printing training.",
+  keywords: "Vastra Institute, Sagar Bansu, Textile Design Academy, Apparel Design, Saree Design, Allover Design, Fabric Printing Training, Screen Printing Course, Textile Design Portfolio, Fashion Design Course, Textile Design India",
   authors: [{ name: "Sagar Bansu" }],
   creator: "Sagar Bansu",
   publisher: "Sagar Bansu",
@@ -36,17 +40,24 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Sagar Bansu - Frontend Engineer",
-    description: "Frontend engineer by profession, creative at heart.",
-    url: "https://mohitvirli.github.io",
-    siteName: "Sagar Bansu's Portfolio",
+    title: "Vastra Institute | Textile & Apparel Design Academy",
+    description: "Learn saree design, repeat pattern development, and commercial screen printing under the guidance of industry expert Sagar Bansu.",
+    url: "https://vastrainstitute.website",
+    siteName: "Vastra Institute",
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Sagar Bansu - Frontend Engineer",
-    description: "Frontend engineer by profession, creative at heart.",
+    title: "Vastra Institute | Textile & Apparel Design Academy",
+    description: "Learn saree design, repeat pattern development, and commercial screen printing under the guidance of industry expert Sagar Bansu.",
+  },
+  icons: {
+    icon: [
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+    ],
+    shortcut: '/favicon.ico',
   },
   verification: {
     google: "GsRYY-ivL0F_VKkfs5KAeToliqz0gCrRAJKKmFkAxBA",

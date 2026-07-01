@@ -17,7 +17,7 @@ const ScrollWrapper = (props: { children: React.ReactNode | React.ReactNode[]}) 
   useEffect(() => {
     if (isActive && data && data.el) {
       const handleScroll = () => {
-        data.el.scrollTop = data.el.scrollHeight;
+        data.el.scrollTop = (data.el.scrollHeight - data.el.clientHeight) * 0.6;
       };
       handleScroll();
       const timer = setTimeout(handleScroll, 100);

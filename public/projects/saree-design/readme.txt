@@ -1,0 +1,1 @@
+Place your images here. Name them 1.jpg, 2.jpg, 3.jpg, 4.jpg, 5.jpg to match the configuration in f:\\F5\\app\\constants\\projects.ts. You can add more by updating the array in projects.ts.

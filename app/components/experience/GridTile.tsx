@@ -75,7 +75,10 @@ const GridTile = (props: GridTileProps) => {
 
     return () => {
       document.body.removeEventListener('keydown', handleEscape);
-    }
+      document.querySelectorAll('.close').forEach((el) => {
+        el.remove();
+      });
+    };
   }, []);
 
   useFrame(() => {
